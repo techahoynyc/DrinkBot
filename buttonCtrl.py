@@ -8,7 +8,7 @@ button1 = Button(27)
 button2 = Button(22)
 button3 = Button(23)
 button4 = Button(24)
-path = "python3 /home/pi/DrinkBot/hellodrinkbot/software/utility/pump.py "
+path = "python3 /home/pi/DrinkBot/pump.py "
 while True:
 	if button1.is_pressed:
 		os.system(path + "1 3")

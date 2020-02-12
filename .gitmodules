@@ -1,0 +1,6 @@
+[submodule "hellodrinkbot"]
+	path = hellodrinkbot
+	url = https://github.com/techahoynyc/hellodrinkbot
+[submodule "Adafruit-Motor-HAT-Python-Library"]
+	path = Adafruit-Motor-HAT-Python-Library
+	url = https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library.git
