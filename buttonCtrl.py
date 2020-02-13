@@ -11,16 +11,16 @@ button4 = Button(24)
 path = "python3 /home/pi/DrinkBot/pump.py "
 while True:
 	if button1.is_pressed:
-		os.system(path + "1 3")
+		os.system(path + "1 180")
 		print("Pressed")
 	elif button2.is_pressed:
-		os.system(path + "2 3")
+		os.system(path + "2 180")
 		print("Pressed")
 	elif button3.is_pressed:
-		os.system(path + "3 3")
+		os.system(path + "3 180")
 		print("Pressed")
 	elif button4.is_pressed:
-		os.system(path + "4 3")
+		os.system(path + "4 180")
 		print("Pressed")
 	else:
 		print("Released")

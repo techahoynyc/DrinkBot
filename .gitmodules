@@ -4,3 +4,6 @@
 [submodule "Adafruit-Motor-HAT-Python-Library"]
 	path = Adafruit-Motor-HAT-Python-Library
 	url = https://github.com/adafruit/Adafruit-Motor-HAT-Python-Library.git
+[submodule "Adafruit_Python_CharLCD"]
+	path = Adafruit_Python_CharLCD
+	url = https://github.com/adafruit/Adafruit_Python_CharLCD.git
