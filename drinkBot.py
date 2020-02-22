@@ -2,23 +2,20 @@
 from Adafruit_MotorHAT import Adafruit_MotorHAT #, Adafruit_DCMotor
 from gpiozero import Button
 import time
-from datetime import datetime
-import atexit
 
 button1 = Button(27)
 button2 = Button(22)
 button3 = Button(23)
 button4 = Button(24)
-buttonDelay = 0.2
+buttonDelay = 0.2 #debounce
 
-b1State = 0
-pumpTime = 3 * 1000
+pumpTime = 3 * 1000 #amount of time pump automatically runs
+pumpList = {1:0,2:0,3:0,4:0} #pumpTimers
 mh = Adafruit_MotorHAT(addr=0X60)
 
-def runPump(id,duration=3):
+def runPump(id):
 	global pumpList
 	mid = int((id+1)/2) #set motorID
-	pumpList[id] = getTime()
 	motor = mh.getMotor(mid)
 	motor.setSpeed(255)
 	print("running pump: ",id)
@@ -26,22 +23,23 @@ def runPump(id,duration=3):
 		motor.run(Adafruit_MotorHAT.FORWARD);
 	else:
 		motor.run(Adafruit_MotorHAT.BACKWARD);
+	pumpList[id] = getTime()
 	time.sleep(buttonDelay)
 
-def stopPumps():
+def checkPumpTimers():
 	global pumpList
 	for p in pumpList:
 		if(pumpList[p]):
 			if((getTime() - pumpList[p]) > pumpTime):
 				print("stopping pump:",p)
+				stopPump(p)
 				pumpList[p] = 0
-				mh.getMotor(int((p+1)/2)).run(Adafruit_MotorHAT.RELEASE);
 
+def stopPump(id):
+	mh.getMotor(int((id+1)/2)).run(Adafruit_MotorHAT.RELEASE);
 
 def getTime():
 	return int(round(time.time() * 1000))
-
-pumpList = {1:0,2:0,3:0,4:0}
 
 while True:
 	if button1.is_pressed:
@@ -52,4 +50,4 @@ while True:
 		runPump(3)
 	elif button4.is_pressed:
 		runPump(4)
-	stopPumps()
+	checkPumpTimers()
