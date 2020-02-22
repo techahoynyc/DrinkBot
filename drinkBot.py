@@ -11,7 +11,7 @@ button4 = Button(24)
 buttonDelay = 0.2 #debounce
 
 pumpTime = 3 * 1000 #amount of time pump automatically runs
-pumpTimers = {1:0,2:0,3:0,4:0} #pumpTimers
+pumpTimers = {1:0,2:0,3:0,4:0} #pump timers
 mh = Adafruit_MotorHAT(addr=0X60)
 
 def runPump(id):
@@ -19,7 +19,7 @@ def runPump(id):
 	mid = int((id+1)/2) #set motorID
 	motor = mh.getMotor(mid)
 	motor.setSpeed(255)
-	print("Running pump: ",id)
+	print("Running pump:",id)
 	if id %2:
 		motor.run(Adafruit_MotorHAT.FORWARD);
 	else:
@@ -27,6 +27,7 @@ def runPump(id):
 	pumpTimers[id] = getTime()
 	time.sleep(buttonDelay)
 
+# check if running pumps are exceeding pumpTime
 def checkPumpTimers():
 	global pumpTimers
 	for p in pumpTimers:
@@ -36,14 +37,14 @@ def checkPumpTimers():
 				pumpTimers[p] = 0
 
 def stopPump(id):
-	print("Stopping pump: ",id)
+	print("Stopping pump:",id)
 	mh.getMotor(int((id+1)/2)).run(Adafruit_MotorHAT.RELEASE);
 
 def getTime():
 	return int(round(time.time() * 1000))
 
 print("Beginning drinkBot.py")
-print("Auto-pump timer set to ",pumpTime,"miliseconds.")
+print("Auto-pump timer set to",pumpTime,"miliseconds.")
 while True:
 	if button1.is_pressed:
 		runPump(1)
