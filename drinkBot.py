@@ -1,4 +1,5 @@
 #! /usr/bin/python
+# drinkBot.py
 from Adafruit_MotorHAT import Adafruit_MotorHAT #, Adafruit_DCMotor
 from gpiozero import Button
 import time
@@ -35,14 +36,14 @@ def checkPumpTimers():
 				pumpTimers[p] = 0
 
 def stopPump(id):
-	print("Stopping pump: ")
+	print("Stopping pump: ",id)
 	mh.getMotor(int((id+1)/2)).run(Adafruit_MotorHAT.RELEASE);
 
 def getTime():
 	return int(round(time.time() * 1000))
 
 print("Beginning drinkBot.py")
-print("Auto-pump timer set to ",pumpTime," second(s)")
+print("Auto-pump timer set to ",pumpTime,"miliseconds.")
 while True:
 	if button1.is_pressed:
 		runPump(1)
