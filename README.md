@@ -8,6 +8,9 @@ This project uses the Adafruit Motor Hat Library and the the Hellodrinkbot sourc
 `git submodule update --init` 
 after you clone to grab them.
 
+## Instructions
+`./drinkbot.py` 
+
 
 ## Refernce links
 __Drink Bot Website__  
