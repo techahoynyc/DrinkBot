@@ -50,17 +50,18 @@ lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7,
 # Demo scrolling message right/left.
 #lcd.clear()
 message = '   Welcome to\n    DrinkBot'
-msg = '   Welcome to \n    DrinkBot'
+
+msg = "   Welcome to \n   DrinkBot"
 lcd.clear()
+lcd.message(msg)
+#while True:
 
-while True:
-
-	lcd.message(msg)
+	#lcd.message(msg1)
 	#lcd.message(message)
 
-	time.sleep(2)
-	lcd.clear()
-	time.sleep(.5)
+#	time.sleep(2)
+#	lcd.clear()
+	#time.sleep(.5)
 #for i in range(lcd_columns-len(message)):
 #    time.sleep(0.5)
 #    lcd.move_right()
